@@ -213,6 +213,8 @@ default['openstack']['block-storage']['volume']['create_volume_group'] = false
 default['openstack']['block-storage']['volume']['iscsi_helper'] = 'tgtadm'
 default['openstack']['block-storage']['volume']['iscsi_ip_address'] = node['ipaddress']
 default['openstack']['block-storage']['volume']['iscsi_port'] = '3260'
+default['openstack']['block-storage']['volume']['use_local_disk'] = false
+default['openstack']['block-storage']['volume']['local_disk'] = nil
 
 # Ceph/RADOS options
 default['openstack']['block-storage']['rbd_pool'] = 'rbd'
