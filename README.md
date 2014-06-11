@@ -52,6 +52,8 @@ TODO: Add DB2 support on other platforms
 * `openstack["block-storage"]["volume_name_template"]` - Template string to be used to generate volume names
 *  `openstack["block-storage"]["snapshot_name_template"]` - Template string to be used to generate snapshot names
 * `openstack['block-storage']['api']['auth']['version']` - Select v2.0 or v3.0. Default v2.0 inherited from common cookbook. The default auth API version used to interact with identity service.
+* openstack['block-storage']['volume']['use_local_disk'] - enable local disk as cinder volume if set true
+* openstack['block-storage']['volume']['local_disk']  - To set which hard disk or partition will be used, such as /dev/sda, /dev/sda1
 
 MQ attributes
 -------------
