@@ -155,6 +155,17 @@ when 'cinder.volume.drivers.ibm.ibmnas.IBMNAS_NFSDriver'
   end
 
 when 'cinder.volume.drivers.lvm.LVMISCSIDriver'
+  if node['openstack']['block-storage']['volume']['use_local_disk']
+    #TODO: should support multiple device drive
+    #implement local disk /dev/sdx, /dev/sdx1
+    vg_name = node['openstack']['block-storage']['volume']['volume_group']
+    local_disk_name = node['openstack']['block-storage']['volume']['local_disk']
+    execute 'Create Cinder volume group' do
+      command "pvcreate #{local_disk_name}; vgcreate #{vg_name} #{local_disk_name}"
+      action :run
+      not_if "vgs #{vg_name}"
+  end
+  
   if node['openstack']['block-storage']['volume']['create_volume_group']
     volume_size = node['openstack']['block-storage']['volume']['volume_group_size']
     seek_count = volume_size.to_i * 1024
